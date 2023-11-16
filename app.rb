@@ -5,7 +5,9 @@ require "erb"
 
 # :nodoc:
 class App
-  def call(_)
+  def call(env)
+    pp env["QUERY_STRING"]
+
     headers = { "Content-type" => "text/html" }
 
     main_header = "Goodbye, world."
