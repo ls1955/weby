@@ -3,7 +3,7 @@
 # :nodoc:
 class App
   def call(env)
-    headers = { "Content/type" => "text/html" }
+    headers = { "Content-type" => "text/html" }
     response = ["<h1>Goodbye, world.</h1>"]
     
     [200, headers, response]
