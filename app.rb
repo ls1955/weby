@@ -2,10 +2,10 @@
 
 # :nodoc:
 class App
-  def call(env)
+  def call(_)
     headers = { "Content-type" => "text/html" }
-    response = ["<h1>Goodbye, world.</h1>"]
+    response = File.read("#{__dir__}/app/views/index.html")
 
-    [200, headers, response]
+    [200, headers, [response]]
   end
 end
