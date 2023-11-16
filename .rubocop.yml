@@ -1,0 +1,5 @@
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+AllCops:
+  TargetRubyVersion: 3.2.2
