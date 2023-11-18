@@ -1,13 +1,19 @@
 # frozen_string_literal: true
 
+require "singleton"
+
 # :nodoc:
 class Router
-  def initialize
-    @routes = {}
+  include Singleton
+
+  class << self
+    def draw(&)
+      instance.instance_eval(&)
+    end
   end
 
-  def draw(&)
-    instance_eval(&)
+  def initialize
+    @routes = {}
   end
 
   def get(path, &blk)
