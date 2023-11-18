@@ -6,6 +6,10 @@ class Router
     @routes = {}
   end
 
+  def draw(&)
+    instance_eval(&)
+  end
+
   def get(path, &blk)
     @routes[path] = blk
   end
