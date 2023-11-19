@@ -16,7 +16,7 @@ class App
     # erb = ERB.new(html_template)
     # response = erb.result(binding)
 
-    response = router.build_response(env["REQUEST_PATH"])
+    response = router.build_response(env)
 
     [200, headers, [response]]
   end
