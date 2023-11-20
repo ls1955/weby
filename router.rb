@@ -17,7 +17,16 @@ class Router
   end
 
   def get(path, &blk)
-    @routes[path] = blk
+    return @routes[path] = blk if blk
+
+    return unless path.include? "/"
+
+    ctrller, action = path.split "/"
+    ctrller_klass = Object.const_get("#{ctrller.capitalize}Controller")
+
+    @router[path.prepend("/")] = proc do |env|
+      ctrller_klass.new(env).send(action)
+    end
   end
 
   def build_response(env)
