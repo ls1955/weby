@@ -1,11 +1,9 @@
 # frozen_string_literal: true
 
-# :nodoc:
-class ArticlesController
-  def initialize(env)
-    @env = env
-  end
+require_relative "application_controller"
 
+# :nodoc:
+class ArticlesController < ApplicationController
   def index
     puts "Request path is #{@env['REQUEST_PATH']}"
 
