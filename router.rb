@@ -2,6 +2,8 @@
 
 require "singleton"
 
+require_relative "app/controllers/articles_controller"
+
 # :nodoc:
 class Router
   include Singleton
@@ -19,14 +21,13 @@ class Router
   def get(path, &blk)
     return @routes[path] = blk if blk
 
-    return unless path.include? "/"
+    return unless path.include? "#"
 
-    ctrller, action = path.split "/"
+    ctrller, action = path.split "#"
     ctrller_klass = Object.const_get("#{ctrller.capitalize}Controller")
+    new_path = "/#{path.tr('#', '/')}"
 
-    @router[path.prepend("/")] = proc do |env|
-      ctrller_klass.new(env).send(action)
-    end
+    @routes[new_path] = ->(env) { ctrller_klass.new(env).send(action) }
   end
 
   def build_response(env)
