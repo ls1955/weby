@@ -32,7 +32,7 @@ class Router
 
   def build_response(env)
     path = env["REQUEST_PATH"]
-    handler = @routes.fetch(path) { -> { "No route for #{path}" } }
+    handler = @routes.fetch(path) { proc { "No route for #{path}" } }
     handler.call(env)
   end
 end
