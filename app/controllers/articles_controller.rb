@@ -5,8 +5,7 @@ require_relative "application_controller"
 # :nodoc:
 class ArticlesController < ApplicationController
   def index
-    puts "Request path is #{@env['REQUEST_PATH']}"
-
-    "This is the articles#index"
+    @title = "Some great title here."
+    @paragraph = "Today is another day, just like any other day."
   end
 end
